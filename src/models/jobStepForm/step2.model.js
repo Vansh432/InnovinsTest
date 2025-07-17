@@ -7,6 +7,11 @@ const step2Schema = new mongoose.Schema({
     ref: "companyprofile",
     required: [true, "Company ID is required"]
   },
+  step1Id:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Step1',
+    required:[true,'step1 Id is required']
+  },
 
   // 🔹 Basic Requirements
   minimumEducation: {
@@ -103,4 +108,5 @@ const step2Schema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.model("Step2", step2Schema);
+const StepTwo= mongoose.model("Step2", step2Schema);
+export default StepTwo

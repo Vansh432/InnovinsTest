@@ -39,8 +39,3 @@ export const getCompanyProfile=async(req,res)=>{
     }
 }
 
-
-export const jobProfile=async(req,res)=>{
-
-    
-}

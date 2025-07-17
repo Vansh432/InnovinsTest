@@ -7,7 +7,11 @@ const step3Schema = new mongoose.Schema({
     ref: "companyprofile",
     required: [true, "Company ID is required"]
   },
-
+step1Id:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Step1',
+    required:[true,'step1 Id is required']
+  },
   // 🔹 Interview Details
   isWalkInInterview: {
     type: Boolean,
@@ -105,4 +109,6 @@ const step3Schema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.model("Step3", step3Schema);
+const StepThree= mongoose.model("Step3", step3Schema);
+
+export default StepThree

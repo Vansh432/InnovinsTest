@@ -11,7 +11,7 @@ const companyProfileSchema=new mongoose.Schema({
         type:String,
         required:[true,"image is required"]
     },
-    OwnerNumber:{
+    ownerNumber:{
      type:Number,
      required:[true,"owner number is required"],
      unique:[true,"owner number should be unique"]
@@ -41,10 +41,7 @@ const companyProfileSchema=new mongoose.Schema({
     workEmail:{
         type:String,
     },
-    currentStep: {
-    type: Number,
-    default: 1,
-  }
+    
 },{timestamps:true})
 
 const CompanyProfile=mongoose.model('companyprofile',companyProfileSchema);

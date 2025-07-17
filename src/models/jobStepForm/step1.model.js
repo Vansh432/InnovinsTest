@@ -14,7 +14,7 @@ const step1Schema = new mongoose.Schema({
   },
 
   jobRoleCategory:{
-   type:String,
+   type:[String],
    required:[true,"job role category is required"]
   },
 
@@ -60,10 +60,6 @@ const step1Schema = new mongoose.Schema({
       },
       message: "Address is required for Work From Office, Field Job, Hybrid, or Rotational jobs."
     }
-  },
-
-  floorOrShopNo: {
-    type: String,
   },
 
   // Compensation Fields
@@ -145,7 +141,7 @@ const step1Schema = new mongoose.Schema({
     type: String,
     validate: {
       validator: function (v) {
-        return this.feePurpose === "Asset/ Inventory Charge" ? !!v : true;
+        return this.joiningFeeRequired && this.feePurpose === "Asset/ Inventory Charge"  ? !!v : true;
       },
       message: "Please mention Asset/Inventory Charges"
     }
@@ -155,7 +151,7 @@ const step1Schema = new mongoose.Schema({
     type: String,
     validate: {
       validator: function (v) {
-        return this.feePurpose === "Registration/ Training Fees" ? !!v : true;
+        return this.joiningFeeRequired && this.feePurpose === "Registration/ Training Fees" ? !!v : true;
       },
       message: "Please mention Registration/Training Fees"
     }
@@ -165,7 +161,7 @@ const step1Schema = new mongoose.Schema({
     type: String,
     validate: {
       validator: function (v) {
-        return this.feePurpose === "Other Reason" ? !!v : true;
+        return this.joiningFeeRequired && this.feePurpose === "Other Reason" ? !!v : true;
       },
       message: "Please specify Other Reason"
     }
@@ -184,4 +180,5 @@ const step1Schema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.model("Step1", step1Schema);
+const StepOne=mongoose.model("Step1", step1Schema);
+export default StepOne;
