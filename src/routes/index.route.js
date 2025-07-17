@@ -1,8 +1,8 @@
 import { Router } from "express";
-import userRoutes from './user.route.js'
+import Admin from "./admin/admin.routes.js";
 
 const routes=Router();
 
-routes.use('/user',userRoutes)
+routes.use('/admin',Admin)
 
 export default routes;
