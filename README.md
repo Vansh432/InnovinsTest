@@ -1,37 +1,95 @@
-# 🚀 Node.js + Express Modular API Boilerplate
+# 📝 Node.js Authentication & Products Management App
 
-A scalable, clean and production-ready REST API boilerplate built with **Node.js**, **Express**, and **MongoDB (Mongoose)**. Designed for maintainability and fast development with a modular folder structure.
+This project is a simple **Node.js + Express + MySQL** web application that demonstrates:
+
+- User Authentication & Session Management
+- Forgot Password (via static OTP)
+- Role-Based Access Control
+- CRUD Operations for Users and Products
+- REST API endpoints for Products
+
+---
+## 🗄️ Database Setup
+
+Run the following SQL queries to create the required tables:
+
+```sql
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    price INT(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+## 🔐 Access Control
+- Middleware protection for routes  
+- Only **authenticated (logged-in)** users can access protected endpoints
 
 ---
 
+## 👥 User Management
+Provides full CRUD functionality for managing users:
+
+- View all users
+- Add a new user
+- Edit an existing user
+- Delete a user
 
 ---
 
-## 🛠️ Tech Stack
+**Base URL:** `/api/users`
 
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **MongoDB + Mongoose** - NoSQL database with ODM
-- **Joi** - Request body validation
-- **dotenv** - Environment config
-- **CORS** - Cross-origin resource sharing
-- **Socket.io** *(optional)* - WebSocket communication
-- **node-cron / bull / agenda** *(optional)* - Cron jobs and queues
+| Method | Endpoint   | Description                     |
+|--------|-------------|---------------------------------|
+| GET    | `/all`         | Get all users                |
+| GET    | `/:id`       | Get a single users by ID       |
+| POST   | `/register`         | Create a new users             |
+| PUT    | `/:id`       | Update an existing users       |
+| DELETE | `/:id`       | Delete a users                  |
+| POST | `/login`       | Login a users                  |
+| POST | `/forget_password`       | forget_password a password                  |
+
+## 📦 Product Management
+Provides full CRUD functionality for managing products:
+
+- View all products
+- Add a new product
+- Edit an existing product
+- Delete a product
 
 ---
 
-## 🚀 Getting Started
+## 📡 Products REST API
 
-### 1. Clone the Repository
+**Base URL:** `/api/user/products`
 
-git clone https://github.com/your-username/project-name.git
-cd project-name
+| Method | Endpoint   | Description                     |
+|--------|-------------|---------------------------------|
+| GET    | `/all`         | Get all products                |
+| GET    | `/:id`       | Get a single product by ID       |
+| POST   | `/`         | Create a new product             |
+| PUT    | `/:id`       | Update an existing product       |
+| DELETE | `/:id`       | Delete a product                  |
 
---- 
-### Install Dependencies
+
+## ⚙️ Setup & Run
+
+### 1. Install Dependencies
+Run the following command to install all required Node modules:
+
+```bash
 npm install
 
-### Configure Environment
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/project-db
-JWT_SECRET=your_jwt_secret_key
+### 2. run server
+```bash
+npm run start
