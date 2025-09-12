@@ -1,14 +1,18 @@
-import mongoose from "mongoose";
+import mysql from 'mysql'
 
-const connectDB=async()=>{
-    const mongodb=process.env.DBURL
-   
-    try{
-     const response=await mongoose.connect(mongodb);
-     console.log("Database connected successfully")
-    }catch(err){
-        console.log(err);
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'innovins_test'
+});
+
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('Error connecting to database:', err);
+        return;
     }
-}
-
-export default connectDB;
+    console.log('Connected to database!');
+    connection.release(); // Release the connection back to the pool
+});
+export default pool;

@@ -1,9 +1,9 @@
 import app from './src/app.js'
 import { configDotenv } from 'dotenv'
-import connectDB from './src/config/dbConfig.js';
+import pool from './src/config/dbConfig.js'
 configDotenv();
 const port=process.env.PORT || 8000
-connectDB();
+
 app.listen(port,(err)=>{
 
     if(err){
